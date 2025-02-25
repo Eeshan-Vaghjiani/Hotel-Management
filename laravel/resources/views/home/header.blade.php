@@ -43,6 +43,27 @@
                               <li class="nav-item">
                                  <a class="nav-link" href="contact.html">Contact Us</a>
                               </li>
+
+
+                              @if (Route::has('login'))
+                                @auth
+                                <div style="margin-top: -8px;" >
+
+                                <x-app-layout>
+
+                                </x-app-layout>
+                                </div>
+                                @else
+                                <li class="nav-item" style="padding-right: 10px; padding-left: 80px;">
+                                 <a class="btn btn-success" href="{{url('login')}}">Login</a>
+                              </li>
+                                    @if (Route::has('register'))
+                                    <li class="nav-item" style="margin-right: -180px;">
+                                 <a class="btn btn-primary" href="{{ url('register') }}">Register</a>
+                              </li>
+                                    @endif
+                                @endauth
+                        @endif
                            </ul>
                         </div>
                      </nav>

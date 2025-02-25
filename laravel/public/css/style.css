@@ -99,7 +99,10 @@ h5 {
 h6 {
      font-size: 13px
 }
-
+.logo{
+    width: 110px;
+    padding-bottom: 15px;
+}
 *,
 *::after,
 *::before {
