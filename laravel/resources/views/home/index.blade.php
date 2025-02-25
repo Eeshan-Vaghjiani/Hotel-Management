@@ -5,13 +5,16 @@
    </head>
    <!-- body -->
    <body class="main-layout">
-      @include ('header')
-      @include ('about')
-      @include ('room')
-      @include ('gallery')
-      @include ('blog')
-      @include ('contact')
-      @include ('footer')
+    <header>
+      @include ('home.header')
+      </header>
+      @include ('home.banner')
+      @include ('home.about')
+      @include ('home.room')
+      @include ('home.gallery')
+      @include ('home.blog')
+      @include ('home.contact')
+      @include ('home.footer')
       <!-- Javascript files-->
       <script src="js/jquery.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>
