@@ -7,5 +7,6 @@ Route::get('/', function () {
 });
 
 
+route::get('/',[AdminController::class, 'home']);
 
 route::get('/home',[AdminController::class, 'index'])->name('home');
