@@ -5,9 +5,7 @@
    </head>
    <!-- body -->
    <body class="main-layout">
-    <header>
       @include ('home.header')
-      </header>
       @include ('home.banner')
       @include ('home.about')
       @include ('home.room')

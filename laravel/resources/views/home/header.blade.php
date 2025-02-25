@@ -1,9 +1,10 @@
  <!-- loader  -->
- <div class="loader_bg">
+      <div class="loader_bg">
          <div class="loader"><img src="images/loading.gif" alt="#"/></div>
       </div>
       <!-- end loader -->
       <!-- header -->
+      <header>
          <!-- header inner -->
          <div class="header">
             <div class="container">
@@ -49,3 +50,6 @@
                </div>
             </div>
          </div>
+      </header>
+      <!-- end header inner -->
+      <!-- end header -->
