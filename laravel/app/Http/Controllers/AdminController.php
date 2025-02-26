@@ -54,13 +54,65 @@ class AdminController extends Controller
         // Save the Room instance to the database
         try {
             $data->save();
-            return redirect()->route('rooms.index')->with('success', 'Room added successfully!');
+            return redirect()->back();
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to add room: ' . $e->getMessage());
         }
     }
     public function view_room() {
         $data = Room::all();
-        Return view('admin.view_room',compact('data'));
+        return view('admin.view_room', compact('data'));
+    }
+
+    public function edit($id)
+    {
+        // Find the room by ID
+        $room = Room::findOrFail($id);
+
+        // Return the edit view with the room data
+        return view('admin.edit', compact('room'));
+    }
+
+    public function destroy($id)
+    {
+        // Find the room by ID
+        $room = Room::findOrFail($id);
+
+        // Delete the room
+        $room->delete();
+
+        // Redirect to the view_room method with a success message
+        return redirect()->action([AdminController::class, 'view_room'])->with('success', 'Room deleted successfully!');
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'room_title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric',
+            'wifi' => 'required|string|in:yes,no',
+            'room_type' => 'nullable|string|max:255',
+            'image' => 'nullable|string|max:255',
+        ]);
+
+        // Find the room by ID
+        $room = Room::findOrFail($id);
+
+        // Update the room with validated data
+        $room->update($validatedData);
+
+        // Handle image upload if a new image is provided
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('room'), $imagename);
+            $room->image = $imagename;
+            $room->save(); // Save the updated image name
+        }
+
+        // Redirect to the view_room method with success message
+        return redirect()->action([AdminController::class, 'view_room'])->with('success', 'Room updated successfully!');
     }
 }

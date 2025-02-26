@@ -17,3 +17,6 @@ route::get('/create_room',[AdminController::class, 'create_room']);
 route::post('/add_room',[AdminController::class, 'add_room']);
 
 route::get('/view_room',[AdminController::class, 'view_room']);
+
+// Define resource routes for rooms
+Route::resource('room', AdminController::class);

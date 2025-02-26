@@ -33,19 +33,28 @@
                 <tr>
                     <th class="th-deg">Room Title</th>
                     <th class="th-deg">Description</th>
-                    <th class="th-deg">price</th>
+                    <th class="th-deg">Price</th>
                     <th class="th-deg">Wifi</th>
                     <th class="th-deg">Room Type</th>
-                    <th class="th-deg">Image </th>
+                    <th class="th-deg">Image</th>
+                    <th class="th-deg">Actions</th>
                 </tr>
-                @foreach ($data as $data)
+                @foreach ($data as $room)
                 <tr>
-                    <td>{{ $data->room_title }}</td>
-                    <td>{!! Str::limit($data->description,200) !!}</td>
-                    <td>{{ $data->price }}$</td>
-                    <td>{{ $data->wifi }}</td>
-                    <td>{{ $data->type }}</td>
-                    <td><img width ="100"src="room/{{ $data->image }}"></td>
+                    <td>{{ $room->room_title }}</td>
+                    <td>{!! Str::limit($room->description,200) !!}</td>
+                    <td>{{ $room->price }}$</td>
+                    <td>{{ $room->wifi }}</td>
+                    <td>{{ $room->room_type }}</td>
+                    <td><img width ="100"src="room/{{ $room->image }}" alt="Room Image"></td>
+                    <td>
+                            <a href="{{ route('room.edit', $room->id) }}" class="btn btn-warning">Edit</a>
+                            <form action="{{ route('room.destroy', $room->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this room?');">Delete</button>
+                            </form>
+                        </td>
                 </tr>
                 @endforeach
 
