@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
+            $table->string('room_title')->nullable(); // Nullable string
+            $table->string('image')->nullable(); // Nullable string
+            $table->longText('description')->nullable(); // Nullable longtext
+            $table->string('price')->nullable(); // Nullable string
+            $table->string('wifi')->default('yes'); // Default 'yes' string
+            $table->string('room_type')->nullable(); // Nullable string
             $table->timestamps();
         });
     }
