@@ -26,4 +26,8 @@ class AdminController extends Controller
     public function home() {
         return view('home.index');
     }
+
+    public function create_roon(){
+        return view('admin.create_room');
+    }
 }
